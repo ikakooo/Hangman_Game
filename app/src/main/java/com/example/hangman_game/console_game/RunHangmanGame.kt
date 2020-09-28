@@ -33,7 +33,8 @@ import com.example.hangman_game.console_game.InputCharAndCheck.inputCharAndCheck
             savedPlayersScore.add(WinnersModel(playerName, lives))
 
             if (lives<=0){
-                println("Please enter Y, H or N: ")
+                println("Sorry, you lost… The word was: $word")
+                println("Want to play again? (Y/N/H) ")
                 whatWillHappen()
             }else{
                 println("Congratulations! Want to play again? (Y, H or N:")
