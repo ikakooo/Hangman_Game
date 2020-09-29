@@ -13,15 +13,16 @@ object InputCharAndCheck {
 /////////////////////// შევდივართ ციკლში რომელშიც ვცდილობთ ჩარაქთერების შეყვანით სიტყვის გამოცნობას ///////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         while (allUnderscoreIsNotOpened && lives > 0) {
-            allUnderscoreIsNotOpened = false
             println("Enter Character: ")
-            val inputtedCharInWord = readLine()?.get(0)
+            val inputWord = readLine()
+            val inputtedCharInWord = if (inputWord?.length==1) { allUnderscoreIsNotOpened = false
+                inputWord[0]} else '*'
 
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //////////// ვამოწმებთ არის თუ არა უკვე შეყვანილი ჩვენს მიერ კონსოლში ////////////////////////////////////////////////////////////////////
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             when {
-                isTriedCharacter(inputtedCharInWord) -> {
+                isTriedCharacter(inputtedCharInWord) && inputtedCharInWord != '*' -> {
                     allUnderscoreIsNotOpened = true
                     println("You already tried this character")
                     println("Lives remaining: $lives ")
@@ -29,10 +30,10 @@ object InputCharAndCheck {
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //////////// ვამოწმებთ არის თუ არა ლათინური ალფაბეტური ////////////////////////////////////////////////////////////////////
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                isAlphabetOrNot(inputtedCharInWord) -> {
+                isAlphabetOrNot(inputtedCharInWord) && inputtedCharInWord != '*' -> {
                     /////////////// შევდივრთ ციკლში სადაც ხდება შეყვანილი ჩარაქთერის შემმოწმება/შედარება/ვალიდაცია/დამატება/დამახსოვრება   //////////////////
                     (Word.indices).forEach {
-                        if (inputtedCharInWord?.toLowerCase() == Word[it].toLowerCase()) {
+                        if (inputtedCharInWord.toLowerCase() == Word[it].toLowerCase()) {
                             ///////// აქ ხდება თითოეული ჩარაქთერის გახსნა/ამოცნობა/შედარება  ////////////
                             incognitoWord[it] = Word[it]
                             triedChars.add(CharsArray(inputtedCharInWord.toLowerCase()))
@@ -47,17 +48,12 @@ object InputCharAndCheck {
                         }
 
                     }
-                    // return@forEach
                     when {
                         charIsNotHere -> {
                             println("There is no such character")
                             lives--
-                            if (inputtedCharInWord != null) {
-                                triedChars.add(CharsArray(inputtedCharInWord.toLowerCase()))
-                            }
-                            if (inputtedCharInWord != null) {
-                                triedChars.add(CharsArray(inputtedCharInWord.toUpperCase()))
-                            }
+                            triedChars.add(CharsArray(inputtedCharInWord.toLowerCase()))
+                            triedChars.add(CharsArray(inputtedCharInWord.toUpperCase()))
                         }
                         else -> println("Yes, it is there!!!")
                     }
@@ -70,6 +66,7 @@ object InputCharAndCheck {
                 else -> {
                     ///////////////////////////// თუ არ არის ალფაბეტური, მაშინ////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     println("Please, enter a valid character")
+                    allUnderscoreIsNotOpened = true
                 }
             }
 

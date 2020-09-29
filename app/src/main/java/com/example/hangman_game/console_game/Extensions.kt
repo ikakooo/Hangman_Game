@@ -31,14 +31,16 @@ object Extensions {
     }
 
     fun whatWillHappen() {
-        val answer = readLine()?.get(0)
+
+        val inputWord = readLine()
+        val answer = if (inputWord?.length==1) inputWord[0] else '*'
         when {
-            answer?.toLowerCase() == 'y' -> {
+            answer.toLowerCase() == 'y' -> {
                 HangmanGameData.weArePlaying = true
                 lives = 8
                 triedChars.clear()
             }
-            answer?.toLowerCase() == 'h' -> {
+            answer.toLowerCase() == 'h' -> {
                 savedPlayersScore.sortBy { it.WinnerLives }
                 val reversed = savedPlayersScore.asReversed()
                 reversed.indices.forEach {
@@ -49,7 +51,7 @@ object Extensions {
                 println("Want to play again? (Y/N/H): ")
                 repeat(1) { whatWillHappen() }
             }
-            answer?.toLowerCase() == 'n' -> {
+            answer.toLowerCase() == 'n' -> {
                 HangmanGameData.weArePlaying = false
                 println("Thanks for playing!")
 
@@ -58,11 +60,11 @@ object Extensions {
     }
 
 
-    fun String.Wordunderscores() {
-        val player = CharArray(toCharArray().size)
-        for (i in player.indices) { // Assign empty dashes at start "_ _ _ _ _ _ _ _"
-            player[i] = '_'
-        }
-        player
-    }
+//    fun String.Wordunderscores() {
+//        val player = CharArray(toCharArray().size)
+//        for (i in player.indices) { // Assign empty dashes at start "_ _ _ _ _ _ _ _"
+//            player[i] = '_'
+//        }
+//        player
+//    }
 }
