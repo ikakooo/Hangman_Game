@@ -11,6 +11,7 @@ import com.example.hangman_game.console_game.InputCharAndCheck.inputCharAndCheck
 ////////////// შევდივართ ციკლში, რომელშიც მთლინანი თამაშის პროცესი მიმდინარეობს
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    @ExperimentalStdlibApi
     fun main() {
         while (weArePlaying) {
             println("Enter Name: ")
@@ -24,7 +25,8 @@ import com.example.hangman_game.console_game.InputCharAndCheck.inputCharAndCheck
             println("Lives remaining: $lives ")
             println("Current Word is: ")
 //////////////////////////////////////////////////// გამოდის შეტყობინება თამაშის დაწყების შესახებ
-            val incognitoWord = printWordUnderscores(word)
+            val incognitoWord = word.printWordUnderscores()
+            //println(incognitoWord.printWithSpacesChars2())
             println(printWithSpacesChars(incognitoWord))///// -> აჩვენებს სიტყვის ზომას სფეისებით დაყოფილ და ქვედა ტირეებით->"_" დაფარულ მდგომარეობაში
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             inputCharAndCheck(word,incognitoWord) ///////////////////////////////////////////////////////////////////////////////

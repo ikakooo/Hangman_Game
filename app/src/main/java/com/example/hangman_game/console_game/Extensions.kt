@@ -6,9 +6,9 @@ import com.example.hangman_game.console_game.HangmanGameData.triedChars
 
 object Extensions {
 
-    fun printWordUnderscores(word: String): CharArray {
-        val playerGuess = CharArray(word.toCharArray().size)
-        for (i in playerGuess.indices) { // Assign empty dashes at start "_ _ _ _ _ _ _ _"
+    fun String.printWordUnderscores(): CharArray {
+        val playerGuess = CharArray(toCharArray().size)
+        for (i in playerGuess.indices) {
             playerGuess[i] = '_'
         }
         return playerGuess
@@ -21,6 +21,14 @@ object Extensions {
         }
         return word
     }
+//    @ExperimentalStdlibApi
+//    fun CharArray.printWithSpacesChars2(): String {
+//        var word = ""
+//        for (i in indices) {
+//            word += concatToString()[i] + " "
+//        }
+//        return word
+//    }
 
 
     fun isAlphabetOrNot(char: Char?): Boolean = char in 'a'..'z' || char in 'A'..'Z'
@@ -60,11 +68,5 @@ object Extensions {
     }
 
 
-//    fun String.Wordunderscores() {
-//        val player = CharArray(toCharArray().size)
-//        for (i in player.indices) { // Assign empty dashes at start "_ _ _ _ _ _ _ _"
-//            player[i] = '_'
-//        }
-//        player
-//    }
+
 }
