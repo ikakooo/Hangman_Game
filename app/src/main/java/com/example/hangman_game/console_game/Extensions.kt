@@ -57,7 +57,7 @@ object Extensions {
 
 
                 println("Want to play again? (Y/N/H): ")
-                repeat(1) { whatWillHappen() }
+                 whatWillHappen()
             }
             answer.toLowerCase() == 'n' -> {
                 HangmanGameData.weArePlaying = false
